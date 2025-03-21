@@ -3,16 +3,24 @@
 import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { Canvas } from '@react-three/fiber';
+import { Suspense } from 'react';
 
-const Stars = dynamic(() => import('./canvas/Stars').then((mod) => mod.default), { ssr: false });
+const Stars = dynamic(() => import('./canvas/Stars'), { ssr: false });
 
 const Hero = () => {
   return (
     <section id="about" className="relative min-h-screen flex items-center justify-center py-20">
       <div className="absolute inset-0 z-0">
-        <Canvas>
-          <Stars />
-        </Canvas>
+        <Suspense fallback={null}>
+          <Canvas
+            dpr={[1, 2]}
+            camera={{ position: [0, 0, 1], fov: 75 }}
+            style={{ background: 'transparent' }}
+          >
+            <ambientLight intensity={0.5} />
+            <Stars />
+          </Canvas>
+        </Suspense>
       </div>
       
       <div className="container mx-auto px-6 relative z-10">
