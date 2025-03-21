@@ -137,67 +137,65 @@ const ExperienceCard = ({ experience, index }: any) => (
 
 const Experience = () => {
   return (
-    <section className="relative w-full">
-      <section id="experience" className="py-20">
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text">
-              Professional Experience
-            </h2>
-          </motion.div>
+    <section id="experience" className="py-20">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text">
+            Professional Experience
+          </h2>
+        </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {experiences.map((experience, index) => (
-              <ExperienceCard
-                key={experience.company}
-                experience={experience}
-                index={index}
-              />
-            ))}
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mt-12 mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text">
-              Technical Skills
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className="bg-[rgba(20,0,40,0.8)] p-6 rounded-xl border border-purple-500/20">
-                <h3 className="text-xl font-semibold text-purple-400 mb-4 flex items-center">
-                  {category === "Programming Languages" && <FaCode className="mr-2" />}
-                  {category === "Web Development" && <FaCloud className="mr-2" />}
-                  {category === "Other Technical Skills" && <FaToolbox className="mr-2" />}
-                  {category === "Soft Skills" && <FaDatabase className="mr-2" />}
-                  {category === "Languages" && <FaLanguage className="mr-2" />}
-                  {category}
-                </h3>
-                <ul className="space-y-2">
-                  {items.map((item) => (
-                    <li key={item} className="text-gray-300 flex items-center">
-                      {getSkillIcon(item)}
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {experiences.map((experience, index) => (
+            <ExperienceCard
+              key={experience.company}
+              experience={experience}
+              index={index}
+            />
+          ))}
         </div>
-      </section>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mt-12 mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 text-transparent bg-clip-text">
+            Technical Skills
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {Object.entries(skills).map(([category, items]) => (
+            <div key={category} className="bg-[rgba(20,0,40,0.8)] p-6 rounded-xl border border-purple-500/20">
+              <h3 className="text-xl font-semibold text-purple-400 mb-4 flex items-center">
+                {category === "Programming Languages" && <FaCode className="mr-2" />}
+                {category === "Web Development" && <FaCloud className="mr-2" />}
+                {category === "Other Technical Skills" && <FaToolbox className="mr-2" />}
+                {category === "Soft Skills" && <FaDatabase className="mr-2" />}
+                {category === "Languages" && <FaLanguage className="mr-2" />}
+                {category}
+              </h3>
+              <ul className="space-y-2">
+                {items.map((item) => (
+                  <li key={item} className="text-gray-300 flex items-center">
+                    {getSkillIcon(item)}
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <div className="mt-20 px-4">
         <motion.div

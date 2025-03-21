@@ -3,6 +3,7 @@ import './globals.css'
 import LoadingScreen from '@/components/LoadingScreen'
 import { metadata } from './metadata'
 import ClientChatBot from '@/components/ClientChatBot'
+import Navbar from '@/components/Navbar'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -41,6 +42,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
         <LoadingScreen />
+        <Navbar />
         <div className="relative z-0">
           {children}
         </div>

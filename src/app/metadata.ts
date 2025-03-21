@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://mudipakishan.vercel.app'),
   title: 'Mudipa Kishan - Software Engineer Portfolio',
   description: 'Explore the work and projects of Mudipa Kishan, a dedicated Software Engineer specializing in web development, cloud technologies, and innovative solutions. Experienced in React, Node.js, AWS, and more.',
   keywords: [
@@ -49,10 +50,7 @@ export const metadata: Metadata = {
     images: ['/api/og'],
     creator: '@mudipakishan',
   },
-  verification: {
-    google: 'your-google-verification-code', // Add your Google Search Console verification code
-  },
   alternates: {
-    canonical: 'https://your-domain.com', // Add your domain
+    canonical: 'https://mudipakishan.vercel.app',
   },
 }

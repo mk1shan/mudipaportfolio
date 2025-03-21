@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedinIn, FaMedium } from 'react-icons/fa6';
 import { MdEmail } from 'react-icons/md';
@@ -9,6 +9,8 @@ import { MdEmail } from 'react-icons/md';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,11 +20,53 @@ const Navbar = () => {
       } else {
         setScrolled(false);
       }
+
+      // Update active section
+      const sections = menuItems.map(item => ({
+        id: item.toLowerCase(),
+        element: document.getElementById(item.toLowerCase())
+      }));
+
+      const currentSection = sections.find(section => {
+        if (section.element) {
+          const rect = section.element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+
+      setActiveSection(currentSection ? currentSection.id : '');
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80; // Height of the fixed navbar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+    setMobileMenuOpen(false);
+  };
 
   const menuItems = ["About", "Projects", "Articles", "Experience", "Contact"];
 
@@ -43,13 +87,15 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
           {menuItems.map((item) => (
-            <Link
+            <button
               key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-white hover:text-purple-400 transition-colors"
+              onClick={() => scrollToSection(item.toLowerCase())}
+              className={`text-white hover:text-purple-400 transition-colors ${
+                activeSection === item.toLowerCase() ? 'text-purple-400 font-medium' : ''
+              }`}
             >
               {item}
-            </Link>
+            </button>
           ))}
 
           {/* Social Links */}
@@ -108,6 +154,7 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
+            ref={mobileMenuRef}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -122,13 +169,14 @@ const Navbar = () => {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <Link
-                    href={`#${item.toLowerCase()}`}
-                    className="block text-white hover:text-purple-400 transition-colors py-2"
-                    onClick={() => setMobileMenuOpen(false)}
+                  <button
+                    onClick={() => scrollToSection(item.toLowerCase())}
+                    className={`block w-full text-left text-white hover:text-purple-400 transition-colors py-2 ${
+                      activeSection === item.toLowerCase() ? 'text-purple-400 font-medium' : ''
+                    }`}
                   >
                     {item}
-                  </Link>
+                  </button>
                 </motion.div>
               ))}
 
