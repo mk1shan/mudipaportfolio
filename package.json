@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@getbrevo/brevo": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@react-spring/three": "^9.7.3",
     "@react-three/drei": "^9.88.0",
@@ -16,10 +17,13 @@
     "@tsparticles/engine": "^3.8.1",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.8.1",
+    "@types/nodemailer": "^6.4.17",
     "axios": "^1.8.4",
     "framer-motion": "^12.5.0",
     "gsap": "^3.12.7",
+    "mudipakishan": "file:",
     "next": "14.0.4",
+    "nodemailer": "^6.10.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^5.5.0",
