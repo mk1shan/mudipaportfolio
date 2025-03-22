@@ -34,7 +34,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Person',
               name: 'Mudipa Kishan',
-              jobTitle: 'Software Engineer',
+              jobTitle: 'Associate Software Engineer',
               url: 'https://your-domain.com',
               sameAs: [
                 'https://github.com/mk1shan',
