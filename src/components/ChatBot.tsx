@@ -5,13 +5,15 @@ import { motion } from 'framer-motion';
 import { MdChatBubble, MdClose } from 'react-icons/md';
 
 const botResponses = {
-  greeting: "Hi! I'm Mudipa's portfolio bot. Ask me anything about his skills, experience, or projects!",
-  skills: "Kishani is skilled in: \n• Web Development (React, Node.js, TypeScript)\n• Cloud Technologies (AWS)\n• Programming Languages (Java, Python, C++)\n• Other Skills: Docker, Azure, Cloud Computing",
-  experience: "Kishani is currently working as:\n• Associate Software Engineer at Axceera (Mar 2024 - Present)\nPreviously:\n• Software Engineering Intern at Avantrio (Jan 2024 - Mar 2024)",
-  projects: "Some notable projects include:\n• EmoCare - A mental health platform with mood-based chatbot\n• Skillshare - A collaborative peer-group platform\n• StockWise - An inventory management system",
-  education: "Kishani has completed:\n• BSc (Hons) in Software Engineering\n• Multiple certifications in AWS, JavaScript, and Cyber Security",
-  contact: "You can reach Kishani at:\n• Email: mudipakishanimayanga@gmail.com\n• LinkedIn: /in/kishanimudipa\n• GitHub: /kishani",
-  default: "I'm not sure about that. Try asking about Kishani's skills, experience, projects, education, or how to contact her!"
+  greeting: "Hi! I'm Mudipa's portfolio bot. I'd love to tell you about him - he's a passionate male software engineer who loves creating amazing web experiences!",
+  skills: "Mudipa is skilled in: \n• Frontend Development (React, Next.js, TypeScript)\n• Backend Development (Node.js, Express)\n• Cloud Technologies (AWS)\n• Programming Languages (Java, Python, C++)\n• UI/UX Design\n• Other Skills: Docker, Azure, Cloud Computing",
+  experience: "Mudipa is currently working as:\n• Associate Software Engineer at Axceera (Mar 2024 - Present)\nPreviously:\n• Software Engineering Intern at Avantrio (Jan 2024 - Mar 2024)\n\nHe's passionate about building scalable web applications and solving complex problems!",
+  projects: "Some of Mudipa's notable projects include:\n• EmoCare - A mental health platform with mood-based chatbot\n• Skillshare - A collaborative peer-group platform\n• StockWise - An inventory management system\n• Portfolio Website - This beautiful website you're currently exploring!",
+  education: "Mudipa has completed:\n• BSc (Hons) in Software Engineering\n• Multiple certifications in AWS, JavaScript, and Cyber Security\n\nHe's constantly learning and staying updated with the latest tech trends!",
+  contact: "You can reach Mudipa at:\n• Email: mudipakishanimayanga@gmail.com\n• LinkedIn: /in/kishanimudipa\n• GitHub: /kishani\n\nHe's always open to interesting discussions and opportunities!",
+  hobbies: "When not coding, Mudipa enjoys:\n• Learning new technologies\n• Contributing to open-source projects\n• Problem-solving\n• Tech blogging\n• Gaming",
+  about: "Let me tell you about Mudipa!\n• He's a male software engineer with a passion for web development\n• Known for his problem-solving skills and attention to detail\n• Always eager to learn and experiment with new technologies\n• Values clean code and best practices\n• Believes in continuous learning and improvement",
+  default: "I'm not sure about that. Try asking about Mudipa's skills, experience, projects, education, hobbies, or how to contact him! You can also ask about who he is!"
 };
 
 const ChatBot = () => {
@@ -33,22 +35,26 @@ const ChatBot = () => {
     setMessages(prev => [...prev, { text: userMessage, isBot: false }]);
     setInput('');
 
-    // Simple keyword matching for responses
+    // Enhanced keyword matching for responses
     const lowercaseInput = userMessage.toLowerCase();
     let botResponse = botResponses.default;
 
-    if (lowercaseInput.includes('skill') || lowercaseInput.includes('know') || lowercaseInput.includes('tech')) {
+    if (lowercaseInput.includes('skill') || lowercaseInput.includes('know') || lowercaseInput.includes('tech') || lowercaseInput.includes('capable')) {
       botResponse = botResponses.skills;
-    } else if (lowercaseInput.includes('experience') || lowercaseInput.includes('work')) {
+    } else if (lowercaseInput.includes('experience') || lowercaseInput.includes('work') || lowercaseInput.includes('job')) {
       botResponse = botResponses.experience;
-    } else if (lowercaseInput.includes('project') || lowercaseInput.includes('portfolio')) {
+    } else if (lowercaseInput.includes('project') || lowercaseInput.includes('portfolio') || lowercaseInput.includes('built')) {
       botResponse = botResponses.projects;
-    } else if (lowercaseInput.includes('education') || lowercaseInput.includes('study')) {
+    } else if (lowercaseInput.includes('education') || lowercaseInput.includes('study') || lowercaseInput.includes('degree')) {
       botResponse = botResponses.education;
-    } else if (lowercaseInput.includes('contact') || lowercaseInput.includes('email') || lowercaseInput.includes('reach')) {
+    } else if (lowercaseInput.includes('contact') || lowercaseInput.includes('email') || lowercaseInput.includes('reach') || lowercaseInput.includes('connect')) {
       botResponse = botResponses.contact;
-    } else if (lowercaseInput.includes('hi') || lowercaseInput.includes('hello') || lowercaseInput.includes('hey')) {
+    } else if (lowercaseInput.includes('hi') || lowercaseInput.includes('hello') || lowercaseInput.includes('hey') || lowercaseInput.includes('start')) {
       botResponse = botResponses.greeting;
+    } else if (lowercaseInput.includes('hobby') || lowercaseInput.includes('interest') || lowercaseInput.includes('free time') || lowercaseInput.includes('fun')) {
+      botResponse = botResponses.hobbies;
+    } else if (lowercaseInput.includes('who') || lowercaseInput.includes('about') || lowercaseInput.includes('person') || lowercaseInput.includes('tell me more')) {
+      botResponse = botResponses.about;
     }
 
     setTimeout(() => {
