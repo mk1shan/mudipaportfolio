@@ -11,7 +11,15 @@ const projects = [
     tech: ["RASA", "Python", "React.js", "Firebase", "Cohere LLM"],
     year: "2024",
     link: "https://github.com/mk1shan/mental-health-project",
-    image: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&auto=format&fit=crop&q=80",
+    image: "/emocare.jpg",
+  },
+  {
+    title: "SE Learning Hub",
+    description: "An interactive learning platform for software engineering students featuring comprehensive course materials, coding exercises, and real-time collaboration tools.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB", "Socket.io"],
+    year: "2024",
+    link: "https://github.com/mk1shan/se-learning-hub",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&auto=format&fit=crop&q=80",
   },
   {
     title: "Skillshare",

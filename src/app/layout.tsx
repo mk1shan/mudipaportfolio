@@ -1,12 +1,22 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
-import LoadingScreen from '@/components/LoadingScreen'
 import { metadata } from './metadata'
-import ClientChatBot from '@/components/ClientChatBot'
-import Navbar from '@/components/Navbar'
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+
+const LoadingScreen = dynamic(() => import('@/components/LoadingScreen'), {
+  ssr: false
+})
+
+const ClientChatBot = dynamic(() => import('@/components/ClientChatBot'), {
+  ssr: false
+})
+
+const Navbar = dynamic(() => import('@/components/Navbar'), {
+  ssr: true
+})
 
 const inter = Inter({ subsets: ['latin'] })
-
 export { metadata }
 
 export default function RootLayout({
@@ -41,12 +51,16 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <LoadingScreen />
+        <Suspense fallback={null}>
+          <LoadingScreen />
+        </Suspense>
         <Navbar />
         <div className="relative z-0">
           {children}
         </div>
-        <ClientChatBot />
+        <Suspense fallback={null}>
+          <ClientChatBot />
+        </Suspense>
       </body>
     </html>
   )

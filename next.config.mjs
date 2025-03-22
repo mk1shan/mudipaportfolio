@@ -2,13 +2,21 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['images.unsplash.com', 'cdn-images-1.medium.com', 'miro.medium.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/photo-**',
+      }
+    ],
     formats: ['image/avif', 'image/webp'],
   },
   compress: true,
   swcMinify: true,
   poweredByHeader: false,
-  generateEtags: true
+  generateEtags: true,
+  optimizeFonts: true
 };
 
 export default nextConfig;

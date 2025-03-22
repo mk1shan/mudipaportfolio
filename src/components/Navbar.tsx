@@ -70,6 +70,18 @@ const Navbar = () => {
 
   const menuItems = ["About", "Projects", "Articles", "Experience", "Contact"];
 
+  // Add the external link under Projects
+  const externalLinks = [
+    {
+      name: "SE Learning Hub",
+      href: "https://selearning.netlify.app",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      className: "text-white hover:text-purple-400 transition-colors",
+      ariaLabel: "SE Learning Hub"
+    }
+  ];
+
   return (
     <motion.nav
       className={`fixed top-0 w-full px-6 py-4 z-20 ${
@@ -97,7 +109,20 @@ const Navbar = () => {
               {item}
             </button>
           ))}
-
+          {activeSection === "projects" && (
+            externalLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                target={link.target}
+                rel={link.rel}
+                className={link.className}
+                aria-label={link.ariaLabel}
+              >
+                {link.name}
+              </a>
+            ))
+          )}
           {/* Social Links */}
           <div className="flex items-center space-x-4 ml-4 border-l border-white/20 pl-4">
             <a
@@ -179,7 +204,27 @@ const Navbar = () => {
                   </button>
                 </motion.div>
               ))}
-
+              {activeSection === "projects" && (
+                externalLinks.map((link) => (
+                  <motion.div
+                    key={link.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <a
+                      href={link.href}
+                      target={link.target}
+                      rel={link.rel}
+                      className={link.className}
+                      aria-label={link.ariaLabel}
+                    >
+                      {link.name}
+                    </a>
+                  </motion.div>
+                ))
+              )}
               {/* Social Links for Mobile */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
