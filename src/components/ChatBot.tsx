@@ -5,14 +5,14 @@ import { motion } from 'framer-motion';
 import { MdChatBubble, MdClose } from 'react-icons/md';
 
 const botResponses = {
-  greeting: "Hi! I'm Mudipa's portfolio bot. I'd love to tell you about him - he's a passionate male software engineer who loves creating amazing web experiences!",
+  greeting: "Hi! I'm Mudipa's portfolio bot. I'd love to tell you about him - he's a passionate  software engineer who loves creating amazing web experiences!",
   skills: "Mudipa is skilled in: \n• Frontend Development (React, Next.js, TypeScript)\n• Backend Development (Node.js, Express)\n• Cloud Technologies (AWS)\n• Programming Languages (Java, Python, C++)\n• UI/UX Design\n• Other Skills: Docker, Azure, Cloud Computing",
   experience: "Mudipa is currently working as:\n• Associate Software Engineer at Axceera (Mar 2024 - Present)\nPreviously:\n• Software Engineering Intern at Avantrio (Jan 2024 - Mar 2024)\n\nHe's passionate about building scalable web applications and solving complex problems!",
   projects: "Some of Mudipa's notable projects include:\n• EmoCare - A mental health platform with mood-based chatbot\n• Skillshare - A collaborative peer-group platform\n• StockWise - An inventory management system\n• Portfolio Website - This beautiful website you're currently exploring!",
   education: "Mudipa has completed:\n• BSc (Hons) in Software Engineering\n• Multiple certifications in AWS, JavaScript, and Cyber Security\n\nHe's constantly learning and staying updated with the latest tech trends!",
   contact: "You can reach Mudipa at:\n• Email: mudipakishanimayanga@gmail.com\n• LinkedIn: /in/kishanimudipa\n• GitHub: /kishani\n\nHe's always open to interesting discussions and opportunities!",
   hobbies: "When not coding, Mudipa enjoys:\n• Learning new technologies\n• Contributing to open-source projects\n• Problem-solving\n• Tech blogging\n• Gaming",
-  about: "Let me tell you about Mudipa!\n• He's a male software engineer with a passion for web development\n• Known for his problem-solving skills and attention to detail\n• Always eager to learn and experiment with new technologies\n• Values clean code and best practices\n• Believes in continuous learning and improvement",
+  about: "Let me tell you about Mudipa!\n• He's a  software engineer with a passion for web development\n• Known for his problem-solving skills and attention to detail\n• Always eager to learn and experiment with new technologies\n• Values clean code and best practices\n• Believes in continuous learning and improvement",
   default: "I'm not sure about that. Try asking about Mudipa's skills, experience, projects, education, hobbies, or how to contact him! You can also ask about who he is!"
 };
 
