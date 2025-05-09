@@ -22,10 +22,17 @@ export default function Articles() {
     const fetchArticles = async () => {
       try {
         const response = await fetch('/api/medium-articles');
-        if (!response.ok) throw new Error('Failed to fetch articles');
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
-        setArticles(data);
+        if (Array.isArray(data)) {
+          setArticles(data);
+        } else {
+          throw new Error('Invalid response format');
+        }
       } catch (err) {
+        console.error('Error fetching articles:', err);
         setError(err instanceof Error ? err.message : 'Failed to load articles');
       } finally {
         setLoading(false);
@@ -59,8 +66,41 @@ export default function Articles() {
   if (error) {
     return (
       <section className="min-h-screen py-20 px-6">
-        <div className="max-w-7xl mx-auto text-center text-red-400">
-          <p>Error: {error}</p>
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-4 flex items-center justify-center">
+            <FaMedium className="mr-3" />
+            <span className="bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
+              Latest Articles
+            </span>
+          </h2>
+          <div className="text-red-400 mt-4">
+            <p>Error loading articles: {error}</p>
+            <p className="mt-2">Please try again later or visit my Medium profile directly:</p>
+            <a
+              href="https://medium.com/@mudipakishanimayanga"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-purple-400 hover:text-purple-300 transition-colors mt-2 inline-block"
+            >
+              View on Medium →
+            </a>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (articles.length === 0) {
+    return (
+      <section className="min-h-screen py-20 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-4 flex items-center justify-center">
+            <FaMedium className="mr-3" />
+            <span className="bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
+              Latest Articles
+            </span>
+          </h2>
+          <p className="text-gray-400 mt-4">No articles found. Please check back later!</p>
         </div>
       </section>
     );
@@ -95,16 +135,16 @@ export default function Articles() {
               viewport={{ once: true }}
               className="bg-[rgba(20,0,40,0.8)] backdrop-blur-sm rounded-xl overflow-hidden border border-purple-500/20 group hover:border-purple-500/50 transition-all"
             >
-              {article.thumbnail && (
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={article.thumbnail}
-                    alt={article.title}
-                    className="w-full h-full object-cover transition-transform group-hover:scale-110"
-                  />
-                </div>
-              )}
               <div className="p-6">
+                {article.thumbnail && (
+                  <div className="relative h-48 overflow-hidden mb-4 rounded-lg">
+                    <img
+                      src={article.thumbnail}
+                      alt={article.title}
+                      className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                    />
+                  </div>
+                )}
                 <h3 className="text-xl font-semibold text-white mb-2 line-clamp-2">
                   {article.title}
                 </h3>
