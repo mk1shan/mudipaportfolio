@@ -19,6 +19,7 @@
     "@tsparticles/slim": "^3.8.1",
     "@types/nodemailer": "^6.4.17",
     "axios": "^1.8.4",
+    "critters": "^0.0.23",
     "framer-motion": "^12.5.0",
     "gsap": "^3.12.7",
     "mudipakishan": "file:",

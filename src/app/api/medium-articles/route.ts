@@ -1,10 +1,12 @@
-import Parser from 'rss-parser';
 import { NextResponse } from 'next/server';
 
 export const runtime = 'nodejs';
 export const revalidate = 3600; // Cache for 1 hour
 
-interface MediumRSSItem {
+// Use CommonJS require for rss-parser
+const Parser = require('rss-parser');
+
+interface CustomItem {
   title: string;
   link: string;
   pubDate: string;
@@ -13,12 +15,8 @@ interface MediumRSSItem {
   'content:encoded'?: string;
 }
 
-type CustomFeed = {
-  items: MediumRSSItem[];
-}
-
-// Create parser instance with type assertion
-const parser = new Parser() as Parser<CustomFeed>;
+// Create parser instance
+const parser = new Parser();
 
 const MEDIUM_USERNAME = '@mudipakishanimayanga';
 const MEDIUM_FEED_URL = `https://medium.com/feed/${MEDIUM_USERNAME}`;
@@ -36,7 +34,7 @@ export async function GET() {
       throw new Error('Invalid feed format');
     }
 
-    const articles = feed.items.map((item: MediumRSSItem) => {
+    const articles = feed.items.map((item: any) => {
       // Extract the first image from the content if available
       const thumbnail = item['content:encoded']?.match(/<img[^>]+src="([^">]+)"/)?.[1] || '';
       
