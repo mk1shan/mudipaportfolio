@@ -17,14 +17,8 @@ type CustomFeed = {
   items: MediumRSSItem[];
 }
 
-const parser = new Parser({
-  customFields: {
-    item: [
-      ['content:encoded', 'content:encoded'],
-      ['category', 'categories'],
-    ],
-  },
-});
+// Create parser instance with type assertion
+const parser = new Parser() as Parser<CustomFeed>;
 
 const MEDIUM_USERNAME = '@mudipakishanimayanga';
 const MEDIUM_FEED_URL = `https://medium.com/feed/${MEDIUM_USERNAME}`;
